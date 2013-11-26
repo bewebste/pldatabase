@@ -345,4 +345,18 @@ VALUE_ACCESSORS(NSData *, data, columnType == SQLITE_NULL ? nil :
     return [self isNullForColumnIndex: [self columnIndexForName: columnName]];
 }
 
+- (int)columnCount {
+	return _columnCount;
+}
+
+- (NSDictionary*)allObjects {
+	NSMutableDictionary*	allObjects = [[NSMutableDictionary alloc] init];
+	for (int i = 0; i < [self columnCount]; i++) {
+		NSString *name = [NSString stringWithUTF8String: sqlite3_column_name(_sqlite_stmt, i)];
+		[allObjects setValue:[self objectForColumnIndex:i] forKey:name];
+	}
+	return allObjects;
+}
+
+
 @end
