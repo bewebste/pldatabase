@@ -1232,6 +1232,167 @@
 			};
 			name = Release;
 		};
+		DDAA339B1849673B009B6E37 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CURRENT_PROJECT_VERSION = "2.0-beta2";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "Other Sources/Prefix.h";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_CFLAGS = "-DPL_DB_PRIVATE=1";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Werror",
+				);
+			};
+			name = Beta;
+		};
+		DDAA339C1849673B009B6E37 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				PRODUCT_NAME = PlausibleDatabase;
+			};
+			name = Beta;
+		};
+		DDAA339D1849673B009B6E37 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Plausible Database";
+			};
+			name = Beta;
+		};
+		DDAA339E1849673B009B6E37 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "Resources/PlausibleDatabase-Info.plist";
+				INSTALL_PATH = "@loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Dependencies/SQLite\"",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_NAME = PlausibleDatabase;
+				SDKROOT = macosx;
+			};
+			name = Beta;
+		};
+		DDAA339F1849673B009B6E37 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EFFECTIVE_PLATFORM_NAME = "-iphone";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Resources/PlausibleDatabase-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_NAME = PlausibleDatabase;
+			};
+			name = Beta;
+		};
+		DDAA33A01849673B009B6E37 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_THUMB_SUPPORT = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Dependencies/SQLite\"",
+				);
+				PRODUCT_NAME = "PlausibleDatabase$(EFFECTIVE_PLATFORM_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Beta;
+		};
+		DDAA33A11849673B009B6E37 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Dependencies/SQLite\"",
+				);
+				PRODUCT_NAME = "PlausibleDatabase$(EFFECTIVE_PLATFORM_NAME)";
+				SDKROOT = iphonesimulator;
+			};
+			name = Beta;
+		};
+		DDAA33A21849673B009B6E37 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				EFFECTIVE_PLATFORM_NAME = "-MacOSX";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DPL_DB_PRIVATE=1";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = Tests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Beta;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1239,6 +1400,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				054CBF0E0EE21B2C0043675E /* Debug */,
+				DDAA33A01849673B009B6E37 /* Beta */,
 				054CBF0F0EE21B2C0043675E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1248,6 +1410,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				054CBF170EE21B580043675E /* Debug */,
+				DDAA33A11849673B009B6E37 /* Beta */,
 				054CBF180EE21B580043675E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1257,6 +1420,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				054CBF260EE21BD10043675E /* Debug */,
+				DDAA339C1849673B009B6E37 /* Beta */,
 				054CBF270EE21BD10043675E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1266,6 +1430,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0551CA4E0DCBE9F600E31E46 /* Debug */,
+				DDAA33A21849673B009B6E37 /* Beta */,
 				0551CA4F0DCBE9F600E31E46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1275,6 +1440,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05534D23104CBFB800647A44 /* Debug */,
+				DDAA339F1849673B009B6E37 /* Beta */,
 				05534D24104CBFB800647A44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1284,6 +1450,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05534D4C104CC09000647A44 /* Debug */,
+				DDAA339D1849673B009B6E37 /* Beta */,
 				05534D4D104CC09000647A44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1293,6 +1460,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				058ABB660DE6361300C995C9 /* Debug */,
+				DDAA339E1849673B009B6E37 /* Beta */,
 				058ABB670DE6361300C995C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1302,6 +1470,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB918208733D990010E9CD /* Debug */,
+				DDAA339B1849673B009B6E37 /* Beta */,
 				1DEB918308733D990010E9CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
