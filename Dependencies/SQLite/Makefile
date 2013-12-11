@@ -18,11 +18,11 @@ SIM_ROOT?=		$(SIM_PLATFORM)/Developer/SDKs/$(SIM_SDK).sdk
 SIM_GCC?=		$(shell xcrun -sdk `echo ${SIM_SDK} | tr '[A-Z]' '[a-z]'` -f clang)
 SIM_CFLAGS?=		-arch i386 -isysroot "$(SIM_ROOT)" -mmacosx-version-min=10.6 -gdwarf-2
 
-MAC_SDK?=		MacOSX10.7
+MAC_SDK?=		MacOSX10.8
 MAC_PLATFORM?=		$(PLATFORMS)/MacOSX.platform
 MAC_ROOT?=		$(MAC_PLATFORM)/Developer/SDKs/$(MAC_SDK).sdk
 MAC_GCC?=		$(shell xcrun -sdk `echo ${MAC_SDK} | tr '[A-Z]' '[a-z]'` -f clang)
-MAC_CFLAGS?=		-arch x86_64 -arch i386 -isysroot "$(MAC_ROOT)" -mmacosx-version-min=10.6 -gdwarf-2
+MAC_CFLAGS?=		-arch x86_64 -arch i386 -isysroot "$(MAC_ROOT)" -mmacosx-version-min=10.6 -gdwarf-2 -DSQLITE_ENABLE_RTREE=1
 
 IOS_OBJS=		sqlite3-sim.o \
 			sqlite3-ios-armv6.o \
