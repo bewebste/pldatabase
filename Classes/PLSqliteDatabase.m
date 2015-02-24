@@ -47,6 +47,10 @@ NSString *PLSqliteException = @"PLSqliteException";
 
 @end
 
+static void pl_sqlite_log(void* refCon, int code, const char* message)
+{
+	NSLog(@"sqlite: %@", [NSString stringWithUTF8String:message]);
+}
 
 /**
  * An SQLite PLDatabase driver.
@@ -67,6 +71,20 @@ NSString *PLSqliteException = @"PLSqliteException";
  * synchronization.
  */
 @implementation PLSqliteDatabase
+
++ (void)load
+{
+	sqlite3_config(SQLITE_CONFIG_LOG, pl_sqlite_log);
+}
+
++(void)initialize
+{
+	sqlite3_vfs *pVfs = sqlite3_vfs_find("unix-none");
+	if( pVfs )
+	{
+		sqlite3_vfs_register(pVfs, 1);
+	}
+}
 
 /**
  * Creates and returns an SQLite database with the provided
@@ -152,6 +170,10 @@ NSString *PLSqliteException = @"PLSqliteException";
     return [self openWithFlags: flags error: NULL];
 }
 
+- (BOOL) openWithFlags: (int) flags error: (NSError **) error {
+	return [self openWithFlags:flags vfsName:nil error:error];
+}
+
 /**
  * Opens the database connection, and returns any errors. May be called once and only once.
  *
@@ -167,7 +189,7 @@ NSString *PLSqliteException = @"PLSqliteException";
  * The flags supported by SQLite are defined in the SQLite C API Documentation:
  * http://www.sqlite.org/c3ref/open.html
  */
-- (BOOL) openWithFlags: (int) flags error: (NSError **) error {
+- (BOOL) openWithFlags: (int) flags vfsName:(NSString*)vfsName error: (NSError **) error {
     int err;
 
     /* Do not call open twice! */
@@ -175,7 +197,7 @@ NSString *PLSqliteException = @"PLSqliteException";
         [NSException raise: PLSqliteException format: @"Attempted to open already-open SQLite database instance at '%@'. Called -[PLSqliteDatabase open] twice?", _path];
     
     /* Open the database. */    
-    err = sqlite3_open_v2([_path UTF8String], &_sqlite, flags, NULL);
+    err = sqlite3_open_v2([_path UTF8String], &_sqlite, flags, [vfsName UTF8String]);
     if (err != SQLITE_OK) {
         [self populateError: error 
               withErrorCode: PLDatabaseErrorFileNotFound 
@@ -604,7 +626,8 @@ NSString *PLSqliteException = @"PLSqliteException";
  * Return the last error code encountered by the underlying sqlite database.
  */
 - (int) lastErrorCode {
-    return sqlite3_errcode(_sqlite);
+//    return sqlite3_errcode(_sqlite);
+	return sqlite3_extended_errcode(_sqlite);
 }
 
 

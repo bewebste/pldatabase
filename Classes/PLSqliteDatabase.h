@@ -69,6 +69,7 @@ extern NSString *PLSqliteException;
 
 - (BOOL) openWithFlags: (int) flags;
 - (BOOL) openWithFlags: (int) flags error: (NSError **) error;
+- (BOOL) openWithFlags: (int) flags vfsName:(NSString*)vfsName error: (NSError **) error;
 
 - (sqlite3 *) sqliteHandle;
 - (int64_t) lastInsertRowId;
