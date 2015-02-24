@@ -42,7 +42,6 @@
 		050C95451353AA9A0080FE20 /* PLSqliteUnlockNotify.h in Headers */ = {isa = PBXBuildFile; fileRef = 050C95411353AA9A0080FE20 /* PLSqliteUnlockNotify.h */; };
 		050C95461353AA9A0080FE20 /* PLSqliteUnlockNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 050C95401353AA9A0080FE20 /* PLSqliteUnlockNotify.m */; };
 		050C95471353AA9A0080FE20 /* PLSqliteUnlockNotify.h in Headers */ = {isa = PBXBuildFile; fileRef = 050C95411353AA9A0080FE20 /* PLSqliteUnlockNotify.h */; };
-		05109A0615D5C44100D0FCDD /* libplsqlite3-macosx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05109A0415D5C42D00D0FCDD /* libplsqlite3-macosx.a */; };
 		05109A0715D5C44600D0FCDD /* libplsqlite3-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05109A0315D5C42D00D0FCDD /* libplsqlite3-ios.a */; };
 		05109A0815D5C44A00D0FCDD /* libplsqlite3-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05109A0315D5C42D00D0FCDD /* libplsqlite3-ios.a */; };
 		051D157C0DD377F00083CC76 /* PlausibleDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 051D157B0DD377F00083CC76 /* PlausibleDatabaseTests.m */; };
@@ -137,6 +136,7 @@
 		05B76B711256503300BFB6DC /* PLSqliteStatementCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 05B76B031256403500BFB6DC /* PLSqliteStatementCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05D196810EAFD2E700F7079D /* PLSqliteMigrationManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D196800EAFD2E700F7079D /* PLSqliteMigrationManagerTests.m */; };
 		05D198930EB1248B00F7079D /* PLSqliteMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D196670EAFC9C800F7079D /* PLSqliteMigrationManager.m */; };
+		DDA98BCD1A9CFD4300B51985 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA98BCB1A9CFAE200B51985 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -262,6 +262,8 @@
 		05D196670EAFC9C800F7079D /* PLSqliteMigrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLSqliteMigrationManager.m; sourceTree = "<group>"; };
 		05D196800EAFD2E700F7079D /* PLSqliteMigrationManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLSqliteMigrationManagerTests.m; sourceTree = "<group>"; };
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		DDA98BCA1A9CFAD700B51985 /* PlausibleDatabase-MacOSX copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "PlausibleDatabase-MacOSX copy2-Info.plist"; path = "/Volumes/Ratbert/Users/bwebster/Projects/UberProject/ThirdPartyUtils/PLDatabase/PlausibleDatabase-MacOSX copy2-Info.plist"; sourceTree = "<absolute>"; };
+		DDA98BCB1A9CFAE200B51985 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,7 +303,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05109A0615D5C44100D0FCDD /* libplsqlite3-macosx.a in Frameworks */,
+				DDA98BCD1A9CFD4300B51985 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,12 +449,14 @@
 		0867D691FE84028FC02AAC07 /* PlausibleDatabase */ = {
 			isa = PBXGroup;
 			children = (
+				DDA98BCB1A9CFAE200B51985 /* libsqlite3.dylib */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				053D389E0DDAE62B009D4EAF /* Dependencies */,
 				034768DFFF38A50411DB9C8B /* Products */,
 				057828650EE2524B0039276A /* Resources */,
+				DDA98BCA1A9CFAD700B51985 /* PlausibleDatabase-MacOSX copy2-Info.plist */,
 			);
 			name = PlausibleDatabase;
 			sourceTree = "<group>";
@@ -1130,12 +1134,14 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "PL_OMIT_UNLOCK_NOTIFY=1";
 				INFOPLIST_FILE = "Resources/PlausibleDatabase-Info.plist";
 				INSTALL_PATH = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Dependencies/SQLite\"",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1161,12 +1167,14 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREPROCESSOR_DEFINITIONS = "PL_OMIT_UNLOCK_NOTIFY=1";
 				INFOPLIST_FILE = "Resources/PlausibleDatabase-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Dependencies/SQLite\"",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -1273,12 +1281,14 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "PL_OMIT_UNLOCK_NOTIFY=1";
 				INFOPLIST_FILE = "Resources/PlausibleDatabase-Info.plist";
 				INSTALL_PATH = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Dependencies/SQLite\"",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-framework",

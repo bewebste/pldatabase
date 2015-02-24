@@ -45,6 +45,8 @@ struct UnlockNotification {
     pthread_mutex_t mutex;               /* Mutex to protect structure */
 };
 
+#ifndef PL_OMIT_UNLOCK_NOTIFY
+
 /*
  * This function is an unlock-notify callback registered with SQLite.
  */
@@ -108,6 +110,14 @@ static int wait_for_unlock_notify(sqlite3 *db){
     
     return rc;
 }
+
+#else
+
+static int wait_for_unlock_notify(sqlite3 *db){
+	return SQLITE_LOCKED;
+}
+
+#endif //PL_OMIT_UNLOCK_NOTIFY
 
 /*
  ** This function is a wrapper around the SQLite function sqlite3_step().

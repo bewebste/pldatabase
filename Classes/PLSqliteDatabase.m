@@ -86,6 +86,24 @@ static void pl_sqlite_log(void* refCon, int code, const char* message)
 	}
 }
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_10
++ (NSString*)uriStringWithPath:(NSString*)inPath options:(NSDictionary*)inOptions
+{
+	NSString* uriString;
+	NSMutableArray* queryItems = [[NSMutableArray alloc] init];
+	[inOptions enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+		[queryItems addObject:[NSURLQueryItem queryItemWithName:key value:obj]];
+	}];
+	NSURLComponents* urlComponents = [[NSURLComponents alloc] init];
+	urlComponents.scheme = NSURLFileScheme;
+	urlComponents.path = inPath;
+	urlComponents.queryItems = queryItems;
+	uriString = [[urlComponents URL] absoluteString];
+	return uriString;
+}
+#endif
+
+
 /**
  * Creates and returns an SQLite database with the provided
  * file path.
@@ -221,6 +239,41 @@ static void pl_sqlite_log(void* refCon, int code, const char* message)
     return YES;
 }
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_10
+- (BOOL) openWithFlags:(int)flags uriOptions:(NSDictionary*)uriOptions error:(NSError**)error {
+	int err;
+	NSString* uriString;
+	
+	/* Do not call open twice! */
+	if (_sqlite != NULL)
+		[NSException raise: PLSqliteException format: @"Attempted to open already-open SQLite database instance at '%@'. Called -[PLSqliteDatabase open] twice?", _path];
+	uriString = [PLSqliteDatabase uriStringWithPath:_path options:uriOptions];
+	/* Open the database. */
+	err = sqlite3_open_v2([uriString UTF8String], &_sqlite, flags | SQLITE_OPEN_URI, NULL);
+	if (err != SQLITE_OK) {
+		[self populateError: error
+			  withErrorCode: PLDatabaseErrorFileNotFound
+				description: NSLocalizedString(@"The SQLite database file could not be found.", @"")
+				queryString: nil];
+		return NO;
+	}
+	
+	/* Set a busy timeout */
+	err = sqlite3_busy_timeout(_sqlite, PL_SQLITE_BUSY_TIMEOUT);
+	if (err != SQLITE_OK) {
+		/* This should never happen. */
+		[self populateError: error
+			  withErrorCode: PLDatabaseErrorUnknown
+				description: NSLocalizedString(@"The SQLite database busy timeout could not be set due to an internal error.", @"")
+				queryString: nil];
+		return NO;
+	}
+	
+	/* Success */
+	return YES;
+}
+#endif
+
 /* from PLDatabase. */
 - (BOOL) goodConnection {
     /* If the connection wasn't opened, we have our answer */
@@ -236,6 +289,10 @@ static void pl_sqlite_log(void* refCon, int code, const char* message)
 */
 - (sqlite3 *) sqliteHandle {
     return _sqlite;
+}
+
+- (NSString *)path {
+	return _path;
 }
 
 /* From PLDatabase */

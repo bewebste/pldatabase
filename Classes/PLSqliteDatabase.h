@@ -60,6 +60,10 @@ extern NSString *PLSqliteException;
     PLSqliteStatementCache *_statementCache;
 }
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_10
++ (NSString*)uriStringWithPath:(NSString*)inPath options:(NSDictionary*)inOptions;
+#endif
+
 + (id) databaseWithPath: (NSString *) dbPath;
 
 - (id) initWithPath: (NSString*) dbPath;
@@ -71,7 +75,12 @@ extern NSString *PLSqliteException;
 - (BOOL) openWithFlags: (int) flags error: (NSError **) error;
 - (BOOL) openWithFlags: (int) flags vfsName:(NSString*)vfsName error: (NSError **) error;
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_10
+- (BOOL) openWithFlags:(int)flags uriOptions:(NSDictionary*)uriOptions error:(NSError**)error;
+#endif
+
 - (sqlite3 *) sqliteHandle;
+- (NSString *)path;
 - (int64_t) lastInsertRowId;
 
 @end
