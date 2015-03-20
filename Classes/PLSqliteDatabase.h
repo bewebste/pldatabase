@@ -64,6 +64,8 @@ extern NSString *PLSqliteException;
 + (NSString*)uriStringWithPath:(NSString*)inPath options:(NSDictionary*)inOptions;
 #endif
 
++ (void)configureSqliteLoggingWithHandler:(void(^)(int code, const char* message))inHandler;
+
 + (id) databaseWithPath: (NSString *) dbPath;
 
 - (id) initWithPath: (NSString*) dbPath;

@@ -40,17 +40,20 @@
 /** A generic SQLite exception. */
 NSString *PLSqliteException = @"PLSqliteException";
 
+static void pl_sqlite_log(void* refCon, int code, const char* message)
+{
+	void (^handler)(int code, const char* message) = refCon;
+	
+	if (handler != NULL)
+		handler(code, message);
+}
+
 
 @interface PLSqliteDatabase (PLSqliteDatabasePrivate)
 
 - (id<PLPreparedStatement>) prepareStatement: (NSString *) statement error: (NSError **) outError closeAtCheckin: (BOOL) closeAtCheckin;
 
 @end
-
-static void pl_sqlite_log(void* refCon, int code, const char* message)
-{
-	NSLog(@"sqlite: %@", [NSString stringWithUTF8String:message]);
-}
 
 /**
  * An SQLite PLDatabase driver.
@@ -72,20 +75,6 @@ static void pl_sqlite_log(void* refCon, int code, const char* message)
  */
 @implementation PLSqliteDatabase
 
-+ (void)load
-{
-	sqlite3_config(SQLITE_CONFIG_LOG, pl_sqlite_log);
-}
-
-+(void)initialize
-{
-	sqlite3_vfs *pVfs = sqlite3_vfs_find("unix-none");
-	if( pVfs )
-	{
-		sqlite3_vfs_register(pVfs, 1);
-	}
-}
-
 #if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_10
 + (NSString*)uriStringWithPath:(NSString*)inPath options:(NSDictionary*)inOptions
 {
@@ -103,6 +92,10 @@ static void pl_sqlite_log(void* refCon, int code, const char* message)
 }
 #endif
 
++ (void)configureSqliteLoggingWithHandler:(void(^)(int code, const char* message))inHandler
+{
+	sqlite3_config(SQLITE_CONFIG_LOG, pl_sqlite_log, [inHandler copy]);
+}
 
 /**
  * Creates and returns an SQLite database with the provided
