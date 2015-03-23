@@ -86,7 +86,8 @@ static void pl_sqlite_log(void* refCon, int code, const char* message)
 	NSURLComponents* urlComponents = [[NSURLComponents alloc] init];
 	urlComponents.scheme = NSURLFileScheme;
 	urlComponents.path = inPath;
-	urlComponents.queryItems = queryItems;
+	if (queryItems.count > 0)
+		urlComponents.queryItems = queryItems;
 	uriString = [[urlComponents URL] absoluteString];
 	return uriString;
 }
