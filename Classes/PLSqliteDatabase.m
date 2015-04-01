@@ -121,7 +121,7 @@ static void pl_sqlite_log(void* refCon, int code, const char* message)
 
     _path = [dbPath retain];
     _statementCache = [[PLSqliteStatementCache alloc] initWithCapacity: 100 /* TODO: configurable? */];
-    
+	_busyTimeout = PL_SQLITE_BUSY_TIMEOUT;
     return self;
 }
 
@@ -219,7 +219,7 @@ static void pl_sqlite_log(void* refCon, int code, const char* message)
     }
     
     /* Set a busy timeout */
-    err = sqlite3_busy_timeout(_sqlite, PL_SQLITE_BUSY_TIMEOUT);
+    err = sqlite3_busy_timeout(_sqlite, self.busyTimeout);
     if (err != SQLITE_OK) {
         /* This should never happen. */
         [self populateError: error
@@ -253,7 +253,7 @@ static void pl_sqlite_log(void* refCon, int code, const char* message)
 	}
 	
 	/* Set a busy timeout */
-	err = sqlite3_busy_timeout(_sqlite, PL_SQLITE_BUSY_TIMEOUT);
+	err = sqlite3_busy_timeout(_sqlite, self.busyTimeout);
 	if (err != SQLITE_OK) {
 		/* This should never happen. */
 		[self populateError: error
