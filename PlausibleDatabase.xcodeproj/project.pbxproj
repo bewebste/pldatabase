@@ -136,7 +136,8 @@
 		05B76B711256503300BFB6DC /* PLSqliteStatementCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 05B76B031256403500BFB6DC /* PLSqliteStatementCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05D196810EAFD2E700F7079D /* PLSqliteMigrationManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D196800EAFD2E700F7079D /* PLSqliteMigrationManagerTests.m */; };
 		05D198930EB1248B00F7079D /* PLSqliteMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D196670EAFC9C800F7079D /* PLSqliteMigrationManager.m */; };
-		DDA98BCD1A9CFD4300B51985 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA98BCB1A9CFAE200B51985 /* libsqlite3.dylib */; };
+		DD6296BD1ACC5B7E0044FDDE /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = DD6296BB1ACC5B7E0044FDDE /* sqlite3.c */; settings = {COMPILER_FLAGS = "-DSQLITE_DEFAULT_LOCKING_MODE=0 -DSQLITE_ENABLE_COLUMN_METADATA -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_LOCKING_STYLE=1 -DSQLITE_ENABLE_RTREE -DSQLITE_TEMP_STORE=2 -DSQLITE_THREADSAFE=2 -Wno-error"; }; };
+		DD6296BE1ACC5B7E0044FDDE /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = DD6296BC1ACC5B7E0044FDDE /* sqlite3.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -262,6 +263,8 @@
 		05D196670EAFC9C800F7079D /* PLSqliteMigrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLSqliteMigrationManager.m; sourceTree = "<group>"; };
 		05D196800EAFD2E700F7079D /* PLSqliteMigrationManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLSqliteMigrationManagerTests.m; sourceTree = "<group>"; };
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		DD6296BB1ACC5B7E0044FDDE /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = SQLite/sqlite3.c; sourceTree = "<group>"; };
+		DD6296BC1ACC5B7E0044FDDE /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = SQLite/sqlite3.h; sourceTree = "<group>"; };
 		DDA98BCA1A9CFAD700B51985 /* PlausibleDatabase-MacOSX copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "PlausibleDatabase-MacOSX copy2-Info.plist"; path = "/Volumes/Ratbert/Users/bwebster/Projects/UberProject/ThirdPartyUtils/PLDatabase/PlausibleDatabase-MacOSX copy2-Info.plist"; sourceTree = "<absolute>"; };
 		DDA98BCB1A9CFAE200B51985 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -303,7 +306,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDA98BCD1A9CFD4300B51985 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +327,8 @@
 		053D389E0DDAE62B009D4EAF /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				DD6296BB1ACC5B7E0044FDDE /* sqlite3.c */,
+				DD6296BC1ACC5B7E0044FDDE /* sqlite3.h */,
 				05109A0315D5C42D00D0FCDD /* libplsqlite3-ios.a */,
 				05109A0415D5C42D00D0FCDD /* libplsqlite3-macosx.a */,
 				05109A0515D5C42D00D0FCDD /* Makefile */,
@@ -568,6 +572,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				058ABBA70DE6380E00C995C9 /* PlausibleDatabase.h in Headers */,
+				DD6296BE1ACC5B7E0044FDDE /* sqlite3.h in Headers */,
 				058ABBA80DE6381000C995C9 /* PLDatabase.h in Headers */,
 				058ABBBA0DE6383C00C995C9 /* PLPreparedStatement.h in Headers */,
 				058ABBBB0DE6383D00C995C9 /* PLResultSet.h in Headers */,
@@ -867,6 +872,7 @@
 				05D198930EB1248B00F7079D /* PLSqliteMigrationManager.m in Sources */,
 				05B76B061256403500BFB6DC /* PLSqliteStatementCache.m in Sources */,
 				0588B5A3131EB11D00F6B60B /* PLDatabasePoolConnectionProvider.m in Sources */,
+				DD6296BD1ACC5B7E0044FDDE /* sqlite3.c in Sources */,
 				054DCC79132130ED005DFFE0 /* PLDatabaseMigrationConnectionProvider.m in Sources */,
 				050C95421353AA9A0080FE20 /* PLSqliteUnlockNotify.m in Sources */,
 				05B66B4A13A666B8004F433B /* PLDatabaseFilterConnectionProvider.m in Sources */,
