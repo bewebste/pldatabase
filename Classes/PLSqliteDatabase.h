@@ -70,6 +70,8 @@ extern NSString *PLSqliteException;
 
 - (id) initWithPath: (NSString*) dbPath;
 
+@property int busyTimeout;
+
 - (BOOL) open;
 - (BOOL) openAndReturnError: (NSError **) error;
 
