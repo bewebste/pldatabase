@@ -148,6 +148,11 @@
     return PLResultSetStatusError;
 }
 
+- (PLResultSetStatus) nextWithError:(NSError**)outError
+{
+	return [self nextAndReturnError:outError];
+}
+
 /* From PLResultSet */
 - (BOOL) enumerateWithBlock: (void (^)(id<PLResultSet> rs, BOOL *stop)) block {
     return [self enumerateAndReturnError: NULL block: block];

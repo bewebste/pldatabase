@@ -28,7 +28,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <sqlite3.h>
+#import "sqlite3.h"
 
 /* On older versions of sqlite3, sqlite3_prepare_v2() is not available. It was introduced in 3.3.9, and significant
  * bugs remained until 3.3.11. */

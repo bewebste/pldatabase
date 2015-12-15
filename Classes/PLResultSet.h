@@ -112,6 +112,8 @@ typedef enum {
  */
 - (PLResultSetStatus) nextAndReturnError: (NSError **) outError;
 
+- (PLResultSetStatus) nextWithError:(NSError**)outError;
+
 /**
  * Close the result set, and return any held database resources. After calling,
  * no further PLResultSet methods may be called on the instance.

@@ -34,7 +34,7 @@
 @class PLSqliteStatementCache;
 #else
 
-#import <sqlite3.h>
+#import "sqlite3.h"
 
 @interface PLSqliteStatementCache : NSObject {
 @private

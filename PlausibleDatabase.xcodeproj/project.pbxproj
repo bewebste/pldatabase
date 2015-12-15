@@ -137,7 +137,7 @@
 		05D196810EAFD2E700F7079D /* PLSqliteMigrationManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D196800EAFD2E700F7079D /* PLSqliteMigrationManagerTests.m */; };
 		05D198930EB1248B00F7079D /* PLSqliteMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D196670EAFC9C800F7079D /* PLSqliteMigrationManager.m */; };
 		DD6296BD1ACC5B7E0044FDDE /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = DD6296BB1ACC5B7E0044FDDE /* sqlite3.c */; settings = {COMPILER_FLAGS = "-DSQLITE_DEFAULT_LOCKING_MODE=0 -DSQLITE_ENABLE_COLUMN_METADATA -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_LOCKING_STYLE=1 -DSQLITE_ENABLE_RTREE -DSQLITE_TEMP_STORE=2 -DSQLITE_THREADSAFE=2 -Wno-error -Wno-unused-const-variable"; }; };
-		DD6296BE1ACC5B7E0044FDDE /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = DD6296BC1ACC5B7E0044FDDE /* sqlite3.h */; };
+		DD6296BE1ACC5B7E0044FDDE /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = DD6296BC1ACC5B7E0044FDDE /* sqlite3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -572,7 +572,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				058ABBA70DE6380E00C995C9 /* PlausibleDatabase.h in Headers */,
-				DD6296BE1ACC5B7E0044FDDE /* sqlite3.h in Headers */,
 				058ABBA80DE6381000C995C9 /* PLDatabase.h in Headers */,
 				058ABBBA0DE6383C00C995C9 /* PLPreparedStatement.h in Headers */,
 				058ABBBB0DE6383D00C995C9 /* PLResultSet.h in Headers */,
@@ -590,6 +589,7 @@
 				0588B4E3131EAB8500F6B60B /* PLDatabaseConstants.h in Headers */,
 				0588B5A2131EB11D00F6B60B /* PLDatabasePoolConnectionProvider.h in Headers */,
 				054DCC78132130ED005DFFE0 /* PLDatabaseMigrationConnectionProvider.h in Headers */,
+				DD6296BE1ACC5B7E0044FDDE /* sqlite3.h in Headers */,
 				050C95431353AA9A0080FE20 /* PLSqliteUnlockNotify.h in Headers */,
 				05B66B4913A666B8004F433B /* PLDatabaseFilterConnectionProvider.h in Headers */,
 			);
@@ -1134,6 +1134,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
@@ -1167,6 +1168,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
@@ -1280,6 +1282,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;

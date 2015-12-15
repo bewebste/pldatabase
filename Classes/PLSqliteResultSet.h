@@ -30,7 +30,7 @@
 #ifdef PL_DB_PRIVATE
 
 #import <Foundation/Foundation.h>
-#import <sqlite3.h>
+#import "sqlite3.h"
 
 #import "PLResultSet.h"
 
