@@ -355,7 +355,7 @@ typedef enum {
 - (id) objectAtIndexedSubscript: (NSUInteger) index;
 
 
-- (NSDictionary*)allObjects;
+- (NSDictionary<NSString*, id>*)allObjects;
 - (int)columnCount;
 
 
