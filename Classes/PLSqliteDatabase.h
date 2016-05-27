@@ -39,7 +39,9 @@
 #import "PLDatabase.h"
 #import "PLSqliteStatementCache.h"
 
-extern NSString *PLSqliteException;
+extern NSString * _Nonnull PLSqliteException;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface PLSqliteDatabase : NSObject <PLDatabase> {
 @private
@@ -66,9 +68,10 @@ extern NSString *PLSqliteException;
 
 + (void)configureSqliteLoggingWithHandler:(void(^)(int code, const char* message))inHandler;
 
-+ (id) databaseWithPath: (NSString *) dbPath;
++ (instancetype) databaseWithPath: (NSString *) dbPath;
 
-- (id) initWithPath: (NSString*) dbPath;
+- (instancetype) initWithPath: (NSString*) dbPath;
+- (instancetype) initWithURL: (NSURL*) dbURL;
 
 @property int busyTimeout;
 
@@ -77,10 +80,10 @@ extern NSString *PLSqliteException;
 
 - (BOOL) openWithFlags: (int) flags;
 - (BOOL) openWithFlags: (int) flags error: (NSError **) error;
-- (BOOL) openWithFlags: (int) flags vfsName:(NSString*)vfsName error: (NSError **) error;
+- (BOOL) openWithFlags: (int) flags vfsName:(nullable NSString*)vfsName error: (NSError **) error;
 
 #if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_10
-- (BOOL) openWithFlags:(int)flags uriOptions:(NSDictionary*)uriOptions error:(NSError**)error;
+- (BOOL) openWithFlags:(int)flags uriOptions:(nullable NSDictionary*)uriOptions error:(NSError**)error;
 #endif
 
 - (sqlite3 *) sqliteHandle;
@@ -105,8 +108,10 @@ extern NSString *PLSqliteException;
 #endif
 
 - (void) populateError: (NSError **) result withErrorCode: (PLDatabaseError) errorCode
-           description: (NSString *) localizedDescription queryString: (NSString *) queryString;
+           description: (NSString *) localizedDescription queryString: (nullable NSString *) queryString;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif

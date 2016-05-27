@@ -125,6 +125,10 @@ static void pl_sqlite_log(void* refCon, int code, const char* message)
     return self;
 }
 
+- (instancetype) initWithURL: (NSURL*) dbURL {
+	return [self initWithPath:dbURL.path];
+}
+
 - (void) dealloc {
     [self close];
     
