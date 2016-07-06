@@ -31,6 +31,8 @@
 #import <Foundation/Foundation.h>
 #import "PLDatabaseConstants.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Result values returned when iterating PLResetSet rows.
  *
@@ -160,7 +162,7 @@ typedef enum {
  *
  * Will throw NSException if the column index is out of range.
  */
-- (NSString *) stringForColumnIndex: (int) columnIndex;
+- (nullable NSString *) stringForColumnIndex: (int) columnIndex;
 
 /**
  * Return the string value of the named column from the current result row.
@@ -169,7 +171,7 @@ typedef enum {
  *
  * Will throw NSException if the column name is unknown.
  */
-- (NSString *) stringForColumn: (NSString *) columnName;
+- (nullable NSString *) stringForColumn: (NSString *) columnName;
 
 /**
  * Returns the 64 bit big integer (long) value of the given column index the current result row.
@@ -267,7 +269,7 @@ typedef enum {
  *
  * Will throw NSException if the column name is unknown.
  */
-- (NSDate *) dateForColumn: (NSString *) columnName;
+- (nullable NSDate *) dateForColumn: (NSString *) columnName;
 
 /**
  * Returns the NSDate value of the given column index from the current result row.
@@ -276,7 +278,7 @@ typedef enum {
  *
  * Will throw NSException if the column index is out of range.
  */
-- (NSDate *) dateForColumnIndex: (int) columnIndex;
+- (nullable NSDate *) dateForColumnIndex: (int) columnIndex;
 
 /**
  * Returns the NSData value of the named column from the current result row.
@@ -285,7 +287,7 @@ typedef enum {
  *
  * Will throw NSException if the column name is unknown.
  */
-- (NSData *) dataForColumn: (NSString *) columnName;
+- (nullable NSData *) dataForColumn: (NSString *) columnName;
 
 /**
  * Returns the NSData value of the given column index from the  current result row.
@@ -294,7 +296,7 @@ typedef enum {
  *
  * Will throw NSException if the column index is out of range.
  */
-- (NSData *) dataForColumnIndex: (int) columnIndex;
+- (nullable NSData *) dataForColumnIndex: (int) columnIndex;
 
 /**
  * Return the value of the named column as a Foundation Objective-C object, using the database driver's built-in
@@ -309,7 +311,7 @@ typedef enum {
  * @warning In previous releases, NSNull was returned for NULL column values. This behavior was not documented,
  * and the implementation has been modified to return nil.
  */
-- (id) objectForColumn: (NSString *) columnName;
+- (nullable id) objectForColumn: (NSString *) columnName;
 
 /**
  * Return the value of the named column as a Foundation Objective-C  object, using the database driver's built-in
@@ -324,7 +326,7 @@ typedef enum {
  * @warning In previous releases, NSNull was returned for NULL column values. This behavior was not documented,
  * and the implementation has been modified to return nil.
  */
-- (id) objectForColumnIndex: (int) columnIndex;
+- (nullable id) objectForColumnIndex: (int) columnIndex;
 
 /**
  * Return the value of the named column as a Foundation Objective-C object, using the database driver's built-in
@@ -338,7 +340,7 @@ typedef enum {
  *
  * @note This method provides support for Objective-C's subscript syntax, and is otherwise identical to PLResultSet::objectForColumn:.
  */
-- (id) objectForKeyedSubscript: (id)key;
+- (nullable id) objectForKeyedSubscript: (id)key;
 
 /**
  * Return the value of the named column as a Foundation Objective-C object, using the database driver's built-in
@@ -352,7 +354,7 @@ typedef enum {
  *
  * @note This method provides support for Objective-C's subscript syntax, and is otherwise identical to PLResultSet::objectForColumnIndex:.
  */
-- (id) objectAtIndexedSubscript: (NSUInteger) index;
+- (nullable id) objectAtIndexedSubscript: (NSUInteger) index;
 
 
 - (NSDictionary<NSString*, id>*)allObjects;
@@ -361,3 +363,4 @@ typedef enum {
 
 @end
 
+NS_ASSUME_NONNULL_END

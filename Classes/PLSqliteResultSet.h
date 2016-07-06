@@ -34,6 +34,8 @@
 
 #import "PLResultSet.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class PLSqlitePreparedStatement;
 
 @interface PLSqliteResultSet : NSObject <PLResultSet> {
@@ -57,6 +59,8 @@
 @property(nonatomic, readonly, getter=isClosed) BOOL closed;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #import "PLSqlitePreparedStatement.h"
 
