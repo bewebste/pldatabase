@@ -238,7 +238,7 @@ static void pl_sqlite_log(void* refCon, int code, const char* message)
 }
 
 #if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_10
-- (BOOL) openWithFlags:(int)flags uriOptions:(NSDictionary*)uriOptions error:(NSError**)error {
+- (BOOL) openWithFlags:(int)flags uriOptions:(NSDictionary<NSString*, NSString*>*)uriOptions error:(NSError**)error {
 	int err;
 	NSString* uriString;
 	

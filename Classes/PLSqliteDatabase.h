@@ -83,7 +83,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) openWithFlags: (int) flags vfsName:(nullable NSString*)vfsName error: (NSError **) error;
 
 #if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_10
-- (BOOL) openWithFlags:(int)flags uriOptions:(nullable NSDictionary*)uriOptions error:(NSError**)error;
+- (BOOL) openWithFlags:(int)flags uriOptions:(nullable NSDictionary<NSString*, NSString*>*)uriOptions error:(NSError**)error;
 #endif
 
 - (sqlite3 *) sqliteHandle;
