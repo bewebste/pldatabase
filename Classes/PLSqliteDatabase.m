@@ -645,6 +645,24 @@ static void pl_sqlite_log(void* refCon, int code, const char* message)
     return sqlite3_last_insert_rowid(_sqlite);
 }
 
+- (void)changeWalAutocheckpointInterval:(NSInteger)inInterval
+{
+	sqlite3_wal_autocheckpoint(_sqlite, inInterval);
+}
+
+- (BOOL)performWalCheckpoint:(nullable NSString*)inDatabaseName error:(NSError**)outError
+{
+	NSError* error = nil;
+	int err = sqlite3_wal_checkpoint(_sqlite, [inDatabaseName UTF8String]);
+	
+	if (err != 0)
+	{
+		[self populateError:&error withErrorCode:PLDatabaseErrorQueryFailed description:@"Could not perform WAL checkpoint" queryString:nil];
+	}
+	if (outError != nil) *outError = error;
+	return (error == nil);
+}
+
 @end
 
 #pragma mark Library Private

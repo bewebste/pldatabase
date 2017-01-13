@@ -90,6 +90,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)path;
 - (int64_t) lastInsertRowId;
 
+- (void)changeWalAutocheckpointInterval:(NSInteger)inInterval;
+- (BOOL)performWalCheckpoint:(nullable NSString*)inDatabaseName error:(NSError**)outError;
+
 @end
 
 #ifdef PL_DB_PRIVATE
